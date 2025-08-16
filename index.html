@@ -20,7 +20,21 @@
   .tab { font-size: 1.3rem; padding-bottom: 0.2rem; border-bottom: 2px solid transparent; }
   .tab.active { border-color: #2ecc71; color: white; }
 
-  .item-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  /* Button styling */
+  .view-all-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #2ecc71;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+  }
+  .view-all-btn:hover { background-color: #27ae60; }
+
+  .item-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
   .item-row a { display: block; text-decoration: none; color: inherit; }
 
   .item-card {
@@ -41,20 +55,6 @@
   .item-card img { width: 120px; height: 120px; object-fit: contain; margin-bottom: 0.5rem; }
   .limited-tag { display: inline-block; background: #2ecc71; color: #fff; font-size: 0.7rem; font-weight: bold; padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.4rem; }
 
-  .view-all-btn {
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #2ecc71;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .view-all-btn:hover {
-    background-color: #27ae60;
-  }
-
   footer { text-align: center; margin: 2rem 0; padding: 1rem; background: #2ecc71; color: white; }
 </style>
 </head>
@@ -72,6 +72,11 @@
   <div class="tabs">
     <div class="tab active" data-target="limiteds">Pekora Limiteds</div>
     <div class="tab" data-target="tradeads">Trade Ads</div>
+  </div>
+
+  <!-- MANUAL POSITION: Move this div anywhere you want -->
+  <div id="viewAllWrapper">
+    <button id="viewAllBtn" class="view-all-btn" onclick="window.location.href='https://rolix.netlify.app/catalog/limiteds'">View All</button>
   </div>
 
   <!-- Limiteds Section -->
@@ -99,9 +104,10 @@
 </footer>
 
 <script>
-// Tab switching
+// Tabs
 const tabs = document.querySelectorAll('.tab');
 const sections = document.querySelectorAll('.items');
+const viewAllWrapper = document.getElementById('viewAllWrapper');
 
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
@@ -111,6 +117,9 @@ tabs.forEach(tab => {
     sections.forEach(sec => {
       sec.style.display = sec.id === tab.dataset.target ? 'flex' : 'none';
     });
+
+    // Show button only for Pekora Limiteds
+    viewAllWrapper.style.display = (tab.dataset.target === 'limiteds') ? 'block' : 'none';
   });
 });
 
@@ -123,43 +132,34 @@ const limitedItems = [
   { name: "Dominus Infernus", value: 35000, rap: 9675, img: "https://www.pekora.zip/images/thumbnails/bf8b3905d00b79847d068397e6fa38de62898dda2e99d188a8161698ee088621.png" }
 ];
 
-// Shuffle function
+// Shuffle
 function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+  for (let i=array.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [array[i], array[j]]=[array[j], array[i]];
   }
 }
 
-// Shuffle items on page load
 shuffleArray(limitedItems);
 
 const limitedContainer = document.querySelector('#limiteds .item-row');
 limitedContainer.innerHTML = '';
 
 // Add items
-limitedItems.forEach(item => {
-  limitedContainer.innerHTML += `
-    <a href="Limiteds.html?item=${item.name.replace(/\s/g, '')}">
-      <div class="item-card">
-        <span class="limited-tag">LIMITED</span>
-        <h3>${item.name}</h3>
-        <img src="${item.img}" alt="${item.name}">
-        <p>Value: ${item.value.toLocaleString()}</p>
-        <p>RAP: ${item.rap.toLocaleString()}</p>
-      </div>
-    </a>
+limitedItems.forEach(item=>{
+  const link = document.createElement('a');
+  link.href = `Limiteds.html?item=${item.name.replace(/\s/g,'')}`;
+  link.innerHTML = `
+    <div class="item-card">
+      <span class="limited-tag">LIMITED</span>
+      <h3>${item.name}</h3>
+      <img src="${item.img}" alt="${item.name}">
+      <p>Value: ${item.value.toLocaleString()}</p>
+      <p>RAP: ${item.rap.toLocaleString()}</p>
+    </div>
   `;
+  limitedContainer.appendChild(link);
 });
-
-// Add "View All" button under the limited items row
-const viewAllBtn = document.createElement('button');
-viewAllBtn.textContent = "View All";
-viewAllBtn.className = "view-all-btn";
-viewAllBtn.onclick = () => { 
-  window.location.href = "https://rolix.netlify.app/catalog/limiteds"; 
-};
-limitedContainer.parentElement.appendChild(viewAllBtn); // append under the row
 </script>
 </body>
 </html>
