@@ -95,6 +95,15 @@ const items = {
     demand: "Medium",
     trend: "Stable"
   },
+  dominusformidulosus: { 
+    name: "Dominus Formidulosus (Hi Khriss)", 
+    value: 2100, 
+    rap: 1672, 
+    type: "Hat", 
+    img: "https://www.pekora.zip/images/thumbnails/cf58981745291b2fd30db587ebecd5a192a2a1d7df09b496dfd621ffde65f299.png",
+    demand: "Decent",
+    trend: "Stable"
+  },
   dominusastra: { 
     name: "Dominus Astra", 
     value: 25000, 
@@ -134,7 +143,7 @@ if(items[itemKey]){
     </div>
   `;
 } else if(itemKey){
-  container.innerHTML = "<h2>Item not found</h2>";
+  container.innerHTML = "<h2>Item not found. Did you type it correctly?</h2>";
 }
 </script>
 </body>
