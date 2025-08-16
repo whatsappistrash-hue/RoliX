@@ -5,17 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Limiteds - RoliX</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#1e1e1e; color:#f1f1f1; }
-    header { background:#2ecc71; padding:1rem; text-align:center; }
-    nav a { color:white; margin:0 0.5rem; text-decoration:none; }
-    nav a:hover { text-decoration:underline; }
-    .container { width:90%; margin:2rem auto; }
-    .item-card { background:#2a2a2a; padding:1rem; border-radius:8px; text-align:center; box-shadow:0 4px 8px rgba(0,0,0,0.3);}
-    .item-card img { width:150px; height:150px; object-fit:contain; margin-bottom:0.5rem;}
-    footer { text-align:center; margin:2rem 0; padding:1rem; background:#2ecc71; color:white;}
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+      line-height: 1.6;
+    }
+
+    /* Green header / navbar */
+    header {
+      background: #2ecc71;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: 90%;
+      margin: 2rem auto;
+    }
+
+    footer {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 1rem;
+      background: #2ecc71;
+      color: white;
+    }
   </style>
 </head>
 <body>
+  <!-- Green header / navbar -->
   <header>
     <h1>Welcome to RoliX [Testing]</h1>
     <nav>
@@ -26,7 +70,7 @@
   </header>
 
   <div class="container" id="item-container">
-    <h2>Select an item from the homepage to view details</h2>
+    <!-- Item info will appear here via script -->
   </div>
 
   <footer>
@@ -35,27 +79,26 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const itemKey = params.get('item');
+    const itemKey = params.get('item')?.toLowerCase();
 
     const items = {
-      dominusemp: { name: "Dominus Empyreus", value: 60000, rap: 11000, img:"https://www.pekora.zip/images/thumbnails/c28f676a9e4fd9b7891ccce63ba37b4d1f5740229775edb35e44f1808d292a60.png" },
-      dominusfrigidus: { name: "Dominus Frigidus", value: 15700, rap: 6988, img:"https://www.pekora.zip/images/thumbnails/11195b53b88df822f463962193263b14765f4c87fd74540089c1b8b7e3386972.png" },
-      dominusaureus: { name: "Dominus Aureus", value: 40000, rap: 4092, img:"https://www.pekora.zip/images/thumbnails/100bd3154ec319beef60e7f3a90c1011d056c2c6a5bf74a442b0ac0297871d60.png" },
-      dominusastra1: { name: "Dominus Astra", value: 25000, rap: 15000, img:"https://www.pekora.zip/images/thumbnails/51618d3bd5c7e48c44957e3da9d233e5cd8fe0b018523ced92e77a21399f52fa.png" },
-      dominusastra2: { name: "Dominus Infernus", value: 35000, rap: 9675, img:"https://www.pekora.zip/images/thumbnails/bf8b3905d00b79847d068397e6fa38de62898dda2e99d188a8161698ee088621.png" },
+      dominusemp: { name: "Dominus Empyreus", value: 60000, rap: 11000 },
+      dominusfrigidus: { name: "Dominus Frigidus", value: 15700, rap: 6988 },
+      dominusaureus: { name: "Dominus Aureus", value: 40000, rap: 4092 },
+      dominusastra1: { name: "Dominus Astra", value: 25000, rap: 15000 },
+      dominusastra2: { name: "Dominus Infernus", value: 35000, rap: 9675 },
     };
 
     const container = document.getElementById('item-container');
 
     if(items[itemKey]){
       container.innerHTML = `
-        <div class="item-card">
-          <h2>${items[itemKey].name}</h2>
-          <img src="${items[itemKey].img}" alt="${items[itemKey].name}">
-          <p>Value: ${items[itemKey].value}</p>
-          <p>RAP: ${items[itemKey].rap}</p>
-        </div>
+        <h2>${items[itemKey].name}</h2>
+        <p>Value: ${items[itemKey].value.toLocaleString()}</p>
+        <p>RAP: ${items[itemKey].rap.toLocaleString()}</p>
       `;
+    } else if(itemKey){
+      container.innerHTML = "<h2>Item not found</h2>";
     }
   </script>
 </body>
