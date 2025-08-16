@@ -1,166 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RoliX Testing</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Arial, sans-serif; background-color: #1e1e1e; color: #f1f1f1; line-height: 1.6; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoliX Testing</title>
+  <style>
+    /* Reset & Base Styles */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background-color: #1e1e1e; color: #f1f1f1; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
 
-  header { background: #2ecc71; padding: 1rem; text-align: center; }
-  header h1 { margin-bottom: 0.5rem; }
-  nav { margin-top: 0.5rem; }
-  nav a { color: white; margin: 0 0.5rem; text-decoration: none; }
-  nav a:hover { text-decoration: underline; }
+    /* Header */
+    header { background: #2ecc71; padding: 1rem; text-align: center; }
+    header h1 { margin-bottom: 0.5rem; }
+    nav { margin-top: 0.5rem; }
+    nav a { color: white; margin: 0 0.5rem; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
 
-  .container { width: 90%; margin: 2rem auto; }
+    /* Main Container */
+    .container { width: 90%; margin: 2rem auto; flex: 1; }
 
-  .tabs { display: flex; gap: 2rem; margin-bottom: 1rem; cursor: pointer; }
-  .tab { font-size: 1.3rem; padding-bottom: 0.2rem; border-bottom: 2px solid transparent; }
-  .tab.active { border-color: #2ecc71; color: white; }
+    /* Tabs */
+    .tabs { display: flex; gap: 2rem; margin-bottom: 1rem; cursor: pointer; }
+    .tab { font-size: 1.3rem; padding-bottom: 0.2rem; border-bottom: 2px solid transparent; }
+    .tab.active { border-color: #2ecc71; color: white; }
 
-  /* Button styling */
-  .view-all-btn {
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #2ecc71;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    display: block;
-  }
-  .view-all-btn:hover { background-color: #27ae60; }
+    /* Buttons */
+    .view-all-btn {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #2ecc71;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      display: block;
+    }
+    .view-all-btn:hover { background-color: #27ae60; }
 
-  .item-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-  .item-row a { display: block; text-decoration: none; color: inherit; }
+    /* Item Cards */
+    .item-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .item-row a { display: block; text-decoration: none; color: inherit; }
 
-  .item-card {
-    background: #2a2a2a;
-    padding: 1rem;
-    border-radius: 8px;
-    width: 250px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .item-card:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-  }
-  .item-card h3 { margin-bottom: 0.5rem; color: #2ecc71; }
-  .item-card img { width: 120px; height: 120px; object-fit: contain; margin-bottom: 0.5rem; }
-  .limited-tag { display: inline-block; background: #2ecc71; color: #fff; font-size: 0.7rem; font-weight: bold; padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.4rem; }
+    .item-card {
+      background: #2a2a2a;
+      padding: 1rem;
+      border-radius: 8px;
+      width: 250px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .item-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    }
+    .item-card h3 { margin-bottom: 0.5rem; color: #2ecc71; }
+    .item-card img { width: 120px; height: 120px; object-fit: contain; margin-bottom: 0.5rem; }
+    .limited-tag { display: inline-block; background: #2ecc71; color: #fff; font-size: 0.7rem; font-weight: bold; padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.4rem; }
 
-  footer { text-align: center; margin: 2rem 0; padding: 1rem; background: #2ecc71; color: white; }
-</style>
+    /* Footer */
+    footer { text-align: center; padding: 1rem; background: #2ecc71; color: white; }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Welcome to RoliX [BETA]</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="https://rolix.netlify.app/About">About</a>
-    <a href="https://rolix.netlify.app/Updates">Updates</a>
-  </nav>
-</header>
+  <header>
+    <h1>Welcome to RoliX [BETA]</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="https://rolix.netlify.app/About">About</a>
+      <a href="https://rolix.netlify.app/Updates">Updates</a>
+    </nav>
+  </header>
 
-<div class="container">
-  <div class="tabs">
-    <div class="tab active" data-target="limiteds">Pekora Limiteds</div>
-    <div class="tab" data-target="tradeads">Trade Ads</div>
-  </div>
-
-  <!-- MANUAL POSITION: Move this div anywhere you want -->
-  <div id="viewAllWrapper">
-    <button id="viewAllBtn" class="view-all-btn" onclick="window.location.href='https://rolix.netlify.app/catalog/limiteds'">View All Limiteds</button>
-  </div>
-
-  <!-- Limiteds Section -->
-  <section id="limiteds" class="items active-section">
-    <div class="item-row"></div>
-  </section>
-
-  <!-- Trade Ads Section -->
-  <section id="tradeads" class="items" style="display:none;">
-    <div class="item-row">
-      <div class="item-card">
-        <h3>Trade Ad 1</h3>
-        <p>Looking to trade Dominus Empyreus for Dominus Infernus</p>
-      </div>
-      <div class="item-card">
-        <h3>Trade Ad 2</h3>
-        <p>Looking to trade Dominus Astra for Dominus Aureus</p>
-      </div>
+  <main class="container">
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-target="limiteds">Pekora Limiteds</div>
+      <div class="tab" data-target="tradeads">Trade Ads</div>
     </div>
-  </section>
-</div>
 
-<footer>
-  <p>&copy; 2025 RoliX Testing</p>
-</footer>
+    <!-- View All Button -->
+    <div id="viewAllWrapper">
+      <button id="viewAllBtn" class="view-all-btn" onclick="window.location.href='https://rolix.netlify.app/catalog/limited'">View All Limiteds</button>
+    </div>
 
-<script>
-// Tabs
-const tabs = document.querySelectorAll('.tab');
-const sections = document.querySelectorAll('.items');
-const viewAllWrapper = document.getElementById('viewAllWrapper');
+    <!-- Limiteds Section -->
+    <section id="limiteds" class="items active-section">
+      <div class="item-row"></div>
+    </section>
 
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
+    <!-- Trade Ads Section -->
+    <section id="tradeads" class="items" style="display:none;">
+      <div class="item-row">
+        <div class="item-card">
+          <h3>Trade Ad 1</h3>
+          <p>Looking to trade Dominus Empyreus for Dominus Infernus</p>
+        </div>
+        <div class="item-card">
+          <h3>Trade Ad 2</h3>
+          <p>Looking to trade Dominus Astra for Dominus Aureus</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    sections.forEach(sec => {
-      sec.style.display = sec.id === tab.dataset.target ? 'flex' : 'none';
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 RoliX Testing</p>
+  </footer>
+
+  <script>
+    // Tabs functionality
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.items');
+    const viewAllWrapper = document.getElementById('viewAllWrapper');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        sections.forEach(sec => {
+          sec.style.display = sec.id === tab.dataset.target ? 'flex' : 'none';
+        });
+
+        viewAllWrapper.style.display = (tab.dataset.target === 'limiteds') ? 'block' : 'none';
+      });
     });
 
-    // Show button only for Pekora Limiteds
-    viewAllWrapper.style.display = (tab.dataset.target === 'limiteds') ? 'block' : 'none';
-  });
-});
+    // Limited items data
+    const limitedItems = [
+      { name: "Dominus Empyreus", value: 60000, rap: 11000, img: "https://www.pekora.zip/images/thumbnails/c28f676a9e4fd9b7891ccce63ba37b4d1f5740229775edb35e44f1808d292a60.png" },
+      { name: "Dominus Frigidus", value: 15700, rap: 6988, img: "https://www.pekora.zip/images/thumbnails/11195b53b88df822f463962193263b14765f4c87fd74540089c1b8b7e3386972.png" },
+      { name: "Dominus Aureus", value: 40000, rap: 4092, img: "https://www.pekora.zip/images/thumbnails/100bd3154ec319beef60e7f3a90c1011d056c2c6a5bf74a442b0ac0297871d60.png" },
+      { name: "Dominus Astra", value: 25000, rap: 15000, img: "https://www.pekora.zip/images/thumbnails/51618d3bd5c7e48c44957e3da9d233e5cd8fe0b018523ced92e77a21399f52fa.png" },
+      { name: "Dominus Infernus", value: 35000, rap: 9675, img: "https://www.pekora.zip/images/thumbnails/bf8b3905d00b79847d068397e6fa38de62898dda2e99d188a8161698ee088621.png" },
+      { name: "Dominus Formidulosus", value: 2100 , rap: 1672, img: "https://www.pekora.zip/images/thumbnails/cf58981745291b2fd30db587ebecd5a192a2a1d7df09b496dfd621ffde65f299.png" }
+    ];
 
-// Limited items array
-const limitedItems = [
-  { name: "Dominus Empyreus", value: 60000, rap: 11000, img: "https://www.pekora.zip/images/thumbnails/c28f676a9e4fd9b7891ccce63ba37b4d1f5740229775edb35e44f1808d292a60.png" },
-  { name: "Dominus Frigidus", value: 15700, rap: 6988, img: "https://www.pekora.zip/images/thumbnails/11195b53b88df822f463962193263b14765f4c87fd74540089c1b8b7e3386972.png" },
-  { name: "Dominus Aureus", value: 40000, rap: 4092, img: "https://www.pekora.zip/images/thumbnails/100bd3154ec319beef60e7f3a90c1011d056c2c6a5bf74a442b0ac0297871d60.png" },
-  { name: "Dominus Astra", value: 25000, rap: 15000, img: "https://www.pekora.zip/images/thumbnails/51618d3bd5c7e48c44957e3da9d233e5cd8fe0b018523ced92e77a21399f52fa.png" },
-  { name: "Dominus Infernus", value: 35000, rap: 9675, img: "https://www.pekora.zip/images/thumbnails/bf8b3905d00b79847d068397e6fa38de62898dda2e99d188a8161698ee088621.png" },
-  { name: "Dominus Formidulosus", value: 2100, rap: 1672, img: "https://www.pekora.zip/images/thumbnails/cf58981745291b2fd30db587ebecd5a192a2a1d7df09b496dfd621ffde65f299.png" }
-];
+    // Shuffle array
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
 
-// Shuffle
-function shuffleArray(array) {
-  for (let i=array.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [array[i], array[j]]=[array[j], array[i]];
-  }
-}
+    shuffleArray(limitedItems);
 
-shuffleArray(limitedItems);
-
-const limitedContainer = document.querySelector('#limiteds .item-row');
-limitedContainer.innerHTML = '';
-
-// Add items
-limitedItems.forEach(item=>{
-  const link = document.createElement('a');
-  link.href = `Limiteds.html?item=${item.name.replace(/\s/g,'')}`;
-  link.innerHTML = `
-    <div class="item-card">
-      <span class="limited-tag">LIMITED</span>
-      <h3>${item.name}</h3>
-      <img src="${item.img}" alt="${item.name}">
-      <p>Value: ${item.value.toLocaleString()}</p>
-      <p>RAP: ${item.rap.toLocaleString()}</p>
-    </div>
-  `;
-  limitedContainer.appendChild(link);
-});
-</script>
+    // Populate limiteds
+    const limitedContainer = document.querySelector('#limiteds .item-row');
+    limitedContainer.innerHTML = '';
+    limitedItems.forEach(item => {
+      const link = document.createElement('a');
+      link.href = `https://rolix.netlify.app/limited?item=${item.name.replace(/\s/g,'')}`;
+      link.innerHTML = `
+        <div class="item-card">
+          <span class="limited-tag">LIMITED</span>
+          <h3>${item.name}</h3>
+          <img src="${item.img}" alt="${item.name}">
+          <p>Value: ${item.value.toLocaleString()}</p>
+          <p>RAP: ${item.rap.toLocaleString()}</p>
+        </div>
+      `;
+      limitedContainer.appendChild(link);
+    });
+  </script>
 </body>
 </html>
