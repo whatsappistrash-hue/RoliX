@@ -1,0 +1,31 @@
+<div class="container" id="item-container">
+  <!-- Item info will appear here -->
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const itemKey = params.get('item');
+
+  // Mapping of items
+  const items = {
+    dominusemp: { name: "Dominus Empyreus", value: 60000, rap: 11000 },
+    dominusfrigidus: { name: "Dominus Frigidus", value: 15700, rap: 6988 },
+    dominusaureus: { name: "Dominus Aureus", value: 40000, rap: 4092 },
+    dominusastra1: { name: "Dominus Astra", value: 25000, rap: 15000 },
+    dominusastra2: { name: "Dominus Infernus", value: 35000, rap: 9675 },
+  };
+
+  const container = document.getElementById('item-container');
+
+  if (items[itemKey]) {
+    container.innerHTML = `
+      <div class="item-card">
+        <h2>${items[itemKey].name}</h2>
+        <p>Value: ${items[itemKey].value}</p>
+        <p>RAP: ${items[itemKey].rap}</p>
+      </div>
+    `;
+  } else {
+    container.innerHTML = "<h2>Item not found</h2>";
+  }
+</script>
