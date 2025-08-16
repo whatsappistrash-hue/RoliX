@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoliX Testing</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #2ecc71;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: 90%;
+      margin: 2rem auto;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #2ecc71;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    /* Items Section */
+    .item-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .item-card {
+      background: #2a2a2a;
+      padding: 1rem;
+      border-radius: 8px;
+      width: 250px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth hover effect */
+    }
+
+    .item-card:hover {
+      transform: translateY(-10px) scale(1.05); /* move up and grow */
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);   /* stronger shadow */
+    }
+
+    .item-card h3 {
+      margin-bottom: 0.5rem;
+      color: #2ecc71;
+    }
+
+    .item-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+    }
+
+    /* LIMITED Tag */
+    .limited-tag {
+      display: inline-block;
+      background: #2ecc71;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 1rem;
+      background: #2ecc71;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to RoliX [Testing]</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Items -->
+    <section class="items">
+      <h2>Pekora Limiteds</h2>
+      <div class="item-row">
+        <div class="item-card">
+          <span class="limited-tag">LIMITED</span>
+          <h3>Dominus Empyreus</h3>
+          <img src="https://www.pekora.zip/images/thumbnails/c28f676a9e4fd9b7891ccce63ba37b4d1f5740229775edb35e44f1808d292a60.png" alt="Dominus Empyreus">
+          <p>Value: 60,000</p>
+          <p>RAP: 11,000</p>
+        </div>
+
+        <div class="item-card">
+          <span class="limited-tag">LIMITED</span>
+          <h3>Dominus Frigidus</h3>
+          <img src="https://www.pekora.zip/images/thumbnails/11195b53b88df822f463962193263b14765f4c87fd74540089c1b8b7e3386972.png" alt="Dominus Frigidus">
+          <p>Value: 15,700</p>
+          <p>RAP: 6,988</p>
+        </div>
+
+        <div class="item-card">
+          <span class="limited-tag">LIMITED</span>
+          <h3>Dominus Aureus</h3>
+          <img src="https://www.pekora.zip/images/thumbnails/100bd3154ec319beef60e7f3a90c1011d056c2c6a5bf74a442b0ac0297871d60.png" alt="Dominus Aureus">
+          <p>Value: Not specified. Estimate 40,000</p>
+          <p>RAP: 4,092</p>
+        </div>
+
+        <div class="item-card">
+          <span class="limited-tag">LIMITED</span>
+          <h3>Dominus Astra</h3>
+          <img src="https://www.pekora.zip/images/thumbnails/51618d3bd5c7e48c44957e3da9d233e5cd8fe0b018523ced92e77a21399f52fa.png" alt="Dominus Astra">
+          <p>Value: 25,000</p>
+          <p>RAP: 15,000</p>
+        </div>
+
+        <div class="item-card">
+          <span class="limited-tag">LIMITED</span>
+          <h3>Dominus Astra</h3>
+          <img src="https://www.pekora.zip/images/thumbnails/bf8b3905d00b79847d068397e6fa38de62898dda2e99d188a8161698ee088621.png" alt="Dominus Astra">
+          <p>Value: 35,000</p>
+          <p>RAP: 9,675</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 RoliX Testing</p>
+  </footer>
+</body>
+</html>
