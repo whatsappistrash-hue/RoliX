@@ -18,7 +18,7 @@
 
   .tabs { display: flex; gap: 2rem; margin-bottom: 1rem; cursor: pointer; }
   .tab { font-size: 1.3rem; padding-bottom: 0.2rem; border-bottom: 2px solid transparent; }
-  .tab.active { border-color: #2ecc71; color: white; } /* text stays white when active */
+  .tab.active { border-color: #2ecc71; color: white; }
 
   .item-row { display: flex; gap: 1rem; flex-wrap: wrap; }
   .item-row a { display: block; text-decoration: none; color: inherit; }
@@ -41,6 +41,20 @@
   .item-card img { width: 120px; height: 120px; object-fit: contain; margin-bottom: 0.5rem; }
   .limited-tag { display: inline-block; background: #2ecc71; color: #fff; font-size: 0.7rem; font-weight: bold; padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.4rem; }
 
+  .view-all-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #2ecc71;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .view-all-btn:hover {
+    background-color: #27ae60;
+  }
+
   footer { text-align: center; margin: 2rem 0; padding: 1rem; background: #2ecc71; color: white; }
 </style>
 </head>
@@ -62,57 +76,7 @@
 
   <!-- Limiteds Section -->
   <section id="limiteds" class="items active-section">
-    <div class="item-row">
-      <a href="Limiteds.html?item=DominusEmpyreus">
-        <div class="item-card">
-          <span class="limited-tag">LIMITED</span>
-          <h3>Dominus Empyreus</h3>
-          <img src="https://www.pekora.zip/images/thumbnails/c28f676a9e4fd9b7891ccce63ba37b4d1f5740229775edb35e44f1808d292a60.png" alt="Dominus Empyreus">
-          <p>Value: 60,000</p>
-          <p>RAP: 11,000</p>
-        </div>
-      </a>
-
-      <a href="Limiteds.html?item=DominusFrigidus">
-        <div class="item-card">
-          <span class="limited-tag">LIMITED</span>
-          <h3>Dominus Frigidus</h3>
-          <img src="https://www.pekora.zip/images/thumbnails/11195b53b88df822f463962193263b14765f4c87fd74540089c1b8b7e3386972.png" alt="Dominus Frigidus">
-          <p>Value: 15,700</p>
-          <p>RAP: 6,988</p>
-        </div>
-      </a>
-
-      <a href="Limiteds.html?item=DominusAureus">
-        <div class="item-card">
-          <span class="limited-tag">LIMITED</span>
-          <h3>Dominus Aureus</h3>
-          <img src="https://www.pekora.zip/images/thumbnails/100bd3154ec319beef60e7f3a90c1011d056c2c6a5bf74a442b0ac0297871d60.png" alt="Dominus Aureus">
-          <p>Value: 40,000</p>
-          <p>RAP: 4,092</p>
-        </div>
-      </a>
-
-      <a href="Limiteds.html?item=DominusAstra">
-        <div class="item-card">
-          <span class="limited-tag">LIMITED</span>
-          <h3>Dominus Astra</h3>
-          <img src="https://www.pekora.zip/images/thumbnails/51618d3bd5c7e48c44957e3da9d233e5cd8fe0b018523ced92e77a21399f52fa.png" alt="Dominus Astra">
-          <p>Value: 25,000</p>
-          <p>RAP: 15,000</p>
-        </div>
-      </a>
-
-      <a href="Limiteds.html?item=DominusInfernus">
-        <div class="item-card">
-          <span class="limited-tag">LIMITED</span>
-          <h3>Dominus Infernus</h3>
-          <img src="https://www.pekora.zip/images/thumbnails/bf8b3905d00b79847d068397e6fa38de62898dda2e99d188a8161698ee088621.png" alt="Dominus Infernus">
-          <p>Value: 35,000</p>
-          <p>RAP: 9,675</p>
-        </div>
-      </a>
-    </div>
+    <div class="item-row"></div>
   </section>
 
   <!-- Trade Ads Section -->
@@ -135,6 +99,7 @@
 </footer>
 
 <script>
+// Tab switching
 const tabs = document.querySelectorAll('.tab');
 const sections = document.querySelectorAll('.items');
 
@@ -148,6 +113,53 @@ tabs.forEach(tab => {
     });
   });
 });
+
+// Limited items array
+const limitedItems = [
+  { name: "Dominus Empyreus", value: 60000, rap: 11000, img: "https://www.pekora.zip/images/thumbnails/c28f676a9e4fd9b7891ccce63ba37b4d1f5740229775edb35e44f1808d292a60.png" },
+  { name: "Dominus Frigidus", value: 15700, rap: 6988, img: "https://www.pekora.zip/images/thumbnails/11195b53b88df822f463962193263b14765f4c87fd74540089c1b8b7e3386972.png" },
+  { name: "Dominus Aureus", value: 40000, rap: 4092, img: "https://www.pekora.zip/images/thumbnails/100bd3154ec319beef60e7f3a90c1011d056c2c6a5bf74a442b0ac0297871d60.png" },
+  { name: "Dominus Astra", value: 25000, rap: 15000, img: "https://www.pekora.zip/images/thumbnails/51618d3bd5c7e48c44957e3da9d233e5cd8fe0b018523ced92e77a21399f52fa.png" },
+  { name: "Dominus Infernus", value: 35000, rap: 9675, img: "https://www.pekora.zip/images/thumbnails/bf8b3905d00b79847d068397e6fa38de62898dda2e99d188a8161698ee088621.png" }
+];
+
+// Shuffle function
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// Shuffle items on page load
+shuffleArray(limitedItems);
+
+const limitedContainer = document.querySelector('#limiteds .item-row');
+limitedContainer.innerHTML = '';
+
+// Add items
+limitedItems.forEach(item => {
+  limitedContainer.innerHTML += `
+    <a href="Limiteds.html?item=${item.name.replace(/\s/g, '')}">
+      <div class="item-card">
+        <span class="limited-tag">LIMITED</span>
+        <h3>${item.name}</h3>
+        <img src="${item.img}" alt="${item.name}">
+        <p>Value: ${item.value.toLocaleString()}</p>
+        <p>RAP: ${item.rap.toLocaleString()}</p>
+      </div>
+    </a>
+  `;
+});
+
+// Add "View All" button under the limited items row
+const viewAllBtn = document.createElement('button');
+viewAllBtn.textContent = "View All";
+viewAllBtn.className = "view-all-btn";
+viewAllBtn.onclick = () => { 
+  window.location.href = "https://rolix.netlify.app/catalog/limiteds"; 
+};
+limitedContainer.parentElement.appendChild(viewAllBtn); // append under the row
 </script>
 </body>
 </html>
